@@ -22,7 +22,7 @@ public class AlbumInsertController { //인서트를 처리하는 컨트롤러
 	private final String gotoPage = "redirect:/list.ab"; //목록보기로 이동
 	
 	//객체를 여기서 필요로 한다
-	@Autowired
+	@Autowired 
 	private AlbumDao albumDao;
 	
 	// 위치 albumList.jsp에서 추가하기 클릭했을때 insert.ab get방식요청 form으로 요청을했을때
