@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="album.AlbumBean">
+<!-- 
+	select * from albums 
+	where singer like %레드%
+	order by num asc
+	
+	select * from albums 
+	where title like %빨%
+	order by num asc
+	동적 쿼리
+	 -->
+<!-- <select id="getAlbumList" resultType="album.model.AlbumBean">
+
+ select * from albums order by num asc  -->
+ 
+<select id="getAlbumList" resultType="MyAlbum" parameterType="hashmap">
+		select * from albums 
+		<if test="whatColumn == 'singer'">
+			where singer like #{keyword}
+		</if>
+		<if test="whatColumn == 'title'">
+			where title like #{keyword}
+		</if>
+		order by num desc
+	</select>
+  
+ <!--sql문장뒤에 절대로 ;를  찍으면 안됨!!!!! select는 resultType을 꼭 써야함
+select id="getAlbumList" resultType="album.model.AlbumBean" parameterType="Hashmap"이있음 생략가능.-->
+ 
+  
+  <insert id ="insertAlbum" >
+  insert into albums(num,title,singer,price,day)
+  values(albums_seq.nextval,#{title},#{singer},#{price},#{day})
+  </insert>
+  <!-- ;를 절대로 찍으면 안된다 insert는 resultType을 입력안해도됨다. 알아서 성공적으로 insert한 갯수가 return되기 때문에
+  #{title},#{singer},#{price},#{day} 이거는 gettitl, getsinger,getprice,getday를  호출하는거임 -->
+  
+  <select id="getAlbum" resultType="album.model.AlbumBean" >
+  select *from albums where num = #{num}
+  </select>
+  
+  <update id="updateAlbum" > 
+  update albums set title = #{title},singer = #{singer},price=#{price},day=#{day}
+  where num=#{num}
+  </update>
+  <!-- insert,update,delete는 resultType입력안함 -->
+  
+<delete id="deleteAlbum"> 
+  	delete from albums where num=#{num}
+  </delete>
+  <!-- resultType쓰지않는다. -->
+  
+  <select id="getTotalCount" resultType="int">
+		select count(*) from albums
+		<if test="whatColumn== 'all'">
+		where singer like #{keyword} or title like #{keyword}
+	</if>
+	<if test="whatColumn== 'title'">  <!-- 샐랙트를 두개로 나눠서 넘어온게 무엇이냐에다라서ㄴ 동적 쿼리  -->
+		where title like #{keyword}
+	</if>
+	<if test="whatColumn== 'singer'">
+		where singer like #{keyword}
+	</if>
+		
+		</select>
+<!--인서트는  resultType=넣으면 안된다 절대로절대XX select는 resultType 꼭 입력해줘야함  -->
+
+  
+  
+</mapper>
+<!--  album.xml DB mapper 파일 -->
