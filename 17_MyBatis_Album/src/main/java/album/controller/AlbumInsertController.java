@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import album.model.AlbumBean;
 import album.model.AlbumDao;
-
+  
 @Controller
 public class AlbumInsertController { //인서트를 처리하는 컨트롤러
 
