@@ -37,14 +37,14 @@ public class AlbumInsertController { //인서트를 처리하는 컨트롤러
 		//"album"은 jsp에서 사용하는 이름이고 album은 자바에서 사용하는 이름 
 		ModelAndView mav = new ModelAndView();
 		
-		if(result.hasErrors()) {
-		mav.setViewName(getPage);
-		return mav;
-		}
+		//kim 팀원 삭제
 		
 		int cnt = -1;
 		cnt = albumDao.insertAlbum(album);//여기서 album은 위에 자바에서사용하는 AlbumBean album 의 album임 
 		mav.setViewName(gotoPage);
+		//kim 팀원이 추가
+		//kim 팀원이 추가
+		//kim 팀원이 추가
 		return mav;
 		
 	}//post방식 요청 
