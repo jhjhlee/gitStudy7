@@ -45,6 +45,10 @@ public class AlbumInsertController { //인서트를 처리하는 컨트롤러
 		//kim 팀원이 추가
 		//kim 팀원이 추가
 		//kim 팀원이 추가
+		//kim 브랜치에서 작업
+		//kim 브랜치에서 작업
+		//kim 브랜치에서 작업
+		//kim 브랜치에서 작업
 		return mav;
 		
 	}//post방식 요청 
